@@ -1,0 +1,30 @@
+function mergeTrees(root1: TreeNode | null, root2: TreeNode | null): TreeNode | null {
+
+    // base cases
+    if (root1 === null && root2 === null) {
+        return null;
+    } else if (root1 === null) {
+        return root2;
+    } else if (root2 === null) {
+        return root1;
+    }
+
+    let newLeftChild = mergeTrees(root1.left, root2.left);
+    let newRightChild = mergeTrees(root1.right, root2.right);
+    let newHead = new TreeNode(root1.val + root2.val, newLeftChild, newRightChild);
+
+    return newHead;
+};
+
+
+class TreeNode {
+    val: number;
+    left: TreeNode | null;
+    right: TreeNode | null;
+
+    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+        this.val = val === undefined ? 0 : val;
+        this.left = left === undefined ? null : left;
+        this.right = right === undefined ? null : left;
+    }
+}
